@@ -7,17 +7,18 @@ class Bot:
     def build(self):
         """Run the build process using build.py."""
         print("Building bots...")
-        result = subprocess.run(["python3", "build.py"], capture_output=True, text=True)
-        if result.returncode != 0:
-            print(f"Build failed:\n{result.stderr}")
+        try:
+            result = subprocess.run(["python3", "build.py"], check=True)
+        except subprocess.CalledProcessError as e:
+            print(f"Build failed with exit code {e.returncode}.")
             exit(1)
-        print(f"Build successful:\n{result.stdout}")
 
     def run(self):
         """Run the bots using run.py."""
         print("Running bots...")
-        result = subprocess.run(["python3", "run.py"], capture_output=True, text=True)
-        if result.returncode != 0:
-            print(f"Run failed:\n{result.stderr}")
+        try:
+            # Use subprocess.run to display logs in real-time
+            result = subprocess.run(["python3", "run.py"], check=True)
+        except subprocess.CalledProcessError as e:
+            print(f"Run failed with exit code {e.returncode}.")
             exit(1)
-        print(f"Run successful:\n{result.stdout}")
