@@ -1,0 +1,4 @@
+# Basic dependencies for Python scripts
+python-dotenv==1.0.0  # For managing environment variables
+
+# Add specific libraries required by your bots here
